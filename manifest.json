@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+
+    "name": "鬥拍字 Kóng-uē",
+    "description": "Lookup selected words on 鬥拍字.意傳.台灣 easily.",
+    "version": "0.1",
+
+    "background": {
+        "scripts": ["app.js"]
+    },
+
+    "permissions": [
+        "contextMenus"
+    ],
+    "icons": {
+        "16": "icon-16x16.png"
+    }
+}
