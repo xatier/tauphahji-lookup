@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
 
-    "name": "鬥拍字 Kóng-uē",
-    "description": "Lookup selected words on 鬥拍字.意傳.台灣 easily.",
+    "name": "臺語媠聲 Kóng-uē",
+    "description": "Lookup selected words on 臺語媠聲 easily.",
     "version": "0.1",
 
     "background": {
