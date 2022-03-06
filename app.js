@@ -21,6 +21,7 @@ const speakIn = (text, lang) => {
     ['English', 'en-US'],
     ['日本語', 'ja-JP'],
     ['中文', 'zh-TW'],
+    ['廣東話', 'zh-HK'],
 ].forEach(([lang, code]) => {
     chrome.contextMenus.create({
         title: `Speak in ${lang}`,
