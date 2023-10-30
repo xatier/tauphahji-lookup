@@ -6,7 +6,7 @@ chrome.contextMenus.create({
         var url =
             'https://suisiann.ithuan.tw/講/' +
             encodeURIComponent(info.selectionText)
-        chrome.tabs.create({ url: url })
+        chrome.tabs.create({ url: url, index: tab.index + 1 })
     },
 })
 
