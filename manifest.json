@@ -1,17 +1,15 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
 
     "name": "臺語媠聲 Kóng-uē",
     "description": "Lookup selected words on 臺語媠聲 easily.",
-    "version": "0.5",
+    "version": "0.6",
 
     "background": {
-        "scripts": ["app.js"]
+        "service_worker": "app.js"
     },
 
-    "permissions": [
-        "contextMenus"
-    ],
+    "permissions": ["contextMenus", "tts"],
     "icons": {
         "16": "icon-16x16.png"
     }

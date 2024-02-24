@@ -1,23 +1,32 @@
 /* eslint-disable no-unused-vars */
 chrome.contextMenus.create({
+    id: `tauphahji-lookup`,
     title: 'Liām hōo lín-pē thiann "%s" on 臺語媠聲',
     contexts: ['selection'],
-    onclick: function (info, tab) {
-        var url =
+})
+
+const SEPARATOR = '--'
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === 'tauphahji-lookup') {
+        const url =
             'https://suisiann.ithuan.tw/講/' +
             encodeURIComponent(info.selectionText)
         chrome.tabs.create({ url: url, index: tab.index + 1 })
-    },
+    } else {
+        const [_, lang, code, name] = info.menuItemId.split(SEPARATOR)
+        speakIn(info.selectionText, code, name)
+    }
 })
 
 // https://stackoverflow.com/a/59786665
-const allVoicesObtained = new Promise(function (resolve, reject) {
-    let voices = speechSynthesis.getVoices()
+const allVoicesObtained = new Promise((resolve, reject) => {
+    let voices = chrome.tts.getVoices()
     if (voices.length !== 0) {
         resolve(voices)
     } else {
-        speechSynthesis.addEventListener('voiceschanged', function () {
-            voices = speechSynthesis.getVoices()
+        chrome.tts.onVoicesChanged.addEventListener(() => {
+            voices = chrome.tts.getVoices()
             resolve(voices)
         })
     }
@@ -26,15 +35,14 @@ const allVoicesObtained = new Promise(function (resolve, reject) {
 // https://twitter.com/bcrypt/status/1500348547887079424
 const speakIn = async (text, lang, name) => {
     const voices = await allVoicesObtained
-    const u = new SpeechSynthesisUtterance(text)
 
     // to pick a new voice
     // console.log('available voices')
     // console.log(voices.filter((v) => v.lang === lang))
-
-    u.lang = lang
-    u.voice = voices.filter((v) => v.lang === lang && v.name.includes(name))[0]
-    speechSynthesis.speak(u)
+    voice = voices.filter(
+        (v) => v.lang === lang && v.voiceName.includes(name),
+    )[0]
+    chrome.tts.speak(text, { lang: lang, voiceName: voice.voiceName })
 }
 
 ;[
@@ -44,10 +52,8 @@ const speakIn = async (text, lang, name) => {
     ['廣東話', 'zh-HK', 'Microsoft HiuGaai Online'],
 ].forEach(([lang, code, name]) => {
     chrome.contextMenus.create({
+        id: ['tauphahji-lookup', lang, code, name].join(SEPARATOR),
         title: `Speak in ${lang}`,
         contexts: ['selection'],
-        onclick: async function (info, tab) {
-            speakIn(info.selectionText, code, name)
-        },
     })
 })
