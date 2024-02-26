@@ -3,7 +3,8 @@
 Chrome extension for looking up `selected text` on [臺語媠聲](https://suisiann.ithuan.tw/%E8%AC%9B/%E8%87%BA%E8%AA%9E%E5%AA%A0%E8%81%B2%E8%AC%9B%E8%A9%B1%E9%98%BF).
 
 TTS support is implemented with
-[SpeechSynthesis APIs](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis).
+<strike>[SpeechSynthesis APIs](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)</strike>
+[chrome.tts APIs](https://developer.chrome.com/docs/extensions/reference/api/tts).
 
 ## Installation
 
