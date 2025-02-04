@@ -5,13 +5,25 @@ chrome.contextMenus.create({
     contexts: ['selection'],
 })
 
+/* eslint-disable no-unused-vars */
+chrome.contextMenus.create({
+    id: `itaigi-lookup`,
+    title: 'tshâ jī-tián "%s" on 愛台語',
+    contexts: ['selection'],
+})
+
 const SEPARATOR = '--'
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (info.menuItemId === 'tauphahji-lookup') {
-        const url =
-            'https://suisiann.ithuan.tw/講/' +
-            encodeURIComponent(info.selectionText)
+        const url = `https://suisiann.ithuan.tw/講/${encodeURIComponent(
+            info.selectionText,
+        )}`
+        chrome.tabs.create({ url: url, index: tab.index + 1 })
+    } else if (info.menuItemId === 'itaigi-lookup') {
+        const url = `https://itaigi.tw/k/${encodeURIComponent(
+            info.selectionText,
+        )}`
         chrome.tabs.create({ url: url, index: tab.index + 1 })
     } else {
         const [_, lang, code, name] = info.menuItemId.split(SEPARATOR)
