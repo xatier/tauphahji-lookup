@@ -58,10 +58,10 @@ const speakIn = async (text, lang, name) => {
 }
 
 ;[
-    ['English', 'en-US', 'Microsoft Aria Online'],
-    ['日本語', 'ja-JP', 'Microsoft Nanami Online'],
-    ['中文', 'zh-TW', 'Microsoft HsiaoChen Online'],
-    ['廣東話', 'zh-HK', 'Microsoft HiuGaai Online'],
+    ['English', 'en-US', 'Microsoft Aria Online (Natural) - English (United States)'],
+    ['日本語', 'ja-JP', 'Microsoft 七海 Online (Natural) - Japanese (Japan)'],
+    ['中文', 'zh-TW', 'Microsoft 曉臻 Online (Natural) - Chinese (Taiwanese Mandarin, Traditional)'],
+    ['廣東話', 'zh-HK', 'Microsoft 曉佳 Online (Natural) - Chinese (Cantonese, Traditional)'],
 ].forEach(([lang, code, name]) => {
     chrome.contextMenus.create({
         id: ['tauphahji-lookup', lang, code, name].join(SEPARATOR),
